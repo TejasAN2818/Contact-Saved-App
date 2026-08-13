@@ -2,84 +2,201 @@ export default function ContactPreview({ contacts = [] }) {
   if (contacts.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-3xl shadow-sm border border-slate-200 p-8 mt-8">
+    <div className="
+      bg-white
+      rounded-2xl
+      shadow-sm
+      border
+      border-blue-200
+      overflow-hidden
+      mt-4
+    ">
 
-      <div className="flex items-center justify-between mb-6">
+      {/* ================= HEADER ================= */}
 
-        <div>
-          <h2 className="text-2xl font-bold">
-            Contact Preview
-          </h2>
+      <div className="
+        bg-blue-400
+        px-4
+        py-3
+        flex
+        items-center
+        justify-between
+      ">
 
-          <p className="text-slate-500 mt-1">
-            Showing first 20 contacts
-          </p>
+        <div className="flex items-center gap-3">
+
+          <div className="
+            w-8
+            h-8
+            rounded-lg
+            bg-blue-600
+            flex
+            items-center
+            justify-center
+            shadow-sm
+          ">
+            <span className="text-white text-sm">
+              👥
+            </span>
+          </div>
+
+          <div>
+
+            <h2 className="text-sm font-bold text-slate-800">
+              Contact Preview
+            </h2>
+
+            <p className="text-[9px] text-blue-900/70">
+              First 20 contacts
+            </p>
+
+          </div>
+
         </div>
 
-        <div className="text-right">
 
-          <h2 className="text-3xl font-bold text-blue-600">
+        {/* Count */}
+
+        <div className="
+          bg-white/70
+          border
+          border-white/60
+          rounded-lg
+          px-3
+          py-1
+          text-center
+        ">
+
+          <span className="text-[9px] text-slate-500">
+            Valid
+          </span>
+
+          <span className="ml-1 text-sm font-bold text-blue-600">
             {contacts.length}
-          </h2>
-
-          <p className="text-slate-500">
-            Valid Contacts
-          </p>
+          </span>
 
         </div>
 
       </div>
 
-      <div className="overflow-auto max-h-[500px] rounded-2xl border">
 
-        <table className="w-full">
+      {/* ================= TABLE ================= */}
 
-          <thead className="bg-slate-100 sticky top-0">
+      <div className="p-3 bg-blue-50">
 
-            <tr>
+        <div className="
+          overflow-auto
+          max-h-[220px]
+          rounded-xl
+          border
+          border-blue-100
+          bg-white
+          shadow-sm
+        ">
 
-              <th className="text-left p-4">
-                #
-              </th>
+          <table className="w-full text-[11px]">
 
-              <th className="text-left p-4">
-                Name
-              </th>
+            <thead className="
+              bg-blue-100
+              sticky
+              top-0
+              z-10
+            ">
 
-              <th className="text-left p-4">
-                Phone
-              </th>
+              <tr>
 
-            </tr>
+                <th className="
+                  text-left
+                  px-3
+                  py-2
+                  w-10
+                  font-semibold
+                  text-slate-600
+                ">
+                  #
+                </th>
 
-          </thead>
+                <th className="
+                  text-left
+                  px-3
+                  py-2
+                  font-semibold
+                  text-slate-600
+                ">
+                  Name
+                </th>
 
-          <tbody>
-
-            {contacts.slice(0,20).map((contact,index)=>(
-              <tr
-                key={index}
-                className="border-t hover:bg-slate-50"
-              >
-
-                <td className="p-4">
-                  {index+1}
-                </td>
-
-                <td className="p-4 font-medium">
-                  {contact.name}
-                </td>
-
-                <td className="p-4">
-                  {contact.phone}
-                </td>
+                <th className="
+                  text-left
+                  px-3
+                  py-2
+                  font-semibold
+                  text-slate-600
+                ">
+                  Phone
+                </th>
 
               </tr>
-            ))}
 
-          </tbody>
+            </thead>
 
-        </table>
+
+            <tbody>
+
+              {contacts.slice(0, 20).map((contact, index) => (
+
+                <tr
+                  key={`${contact.phone}-${index}`}
+                  className="
+                    border-t
+                    border-slate-100
+                    hover:bg-blue-50
+                    transition-colors
+                  "
+                >
+
+                  <td className="px-3 py-1.5 text-slate-400">
+                    {index + 1}
+                  </td>
+
+                  <td className="
+                    px-3
+                    py-1.5
+                    font-medium
+                    text-slate-700
+                  ">
+                    {contact.name}
+                  </td>
+
+                  <td className="
+                    px-3
+                    py-1.5
+                    text-slate-600
+                  ">
+                    {contact.phone}
+                  </td>
+
+                </tr>
+
+              ))}
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        {contacts.length > 20 && (
+          <p className="
+            text-[9px]
+            text-slate-400
+            text-center
+            mt-1
+          ">
+            Showing 20 of {contacts.length} contacts
+          </p>
+        )}
 
       </div>
 
