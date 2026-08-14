@@ -179,7 +179,7 @@ export default function Dashboard() {
         {/* ================= CONTACT AREA ================= */}
 
         <div className="
-    bg-blue-200
+    bg-white-50
     mt-5
     rounded-3xl
     p-3
